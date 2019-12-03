@@ -5,9 +5,9 @@ class Ship(pygame.sprite.Sprite):
     def __init__(self,x,y):
         pygame.sprite.Sprite.__init__(self)
         self.image = pygame.image.load("assets/ship.png").convert_alpha()
-        self.x = x
-        self.y = y
         self.rect = self.image.get_rect()
+        self.rect.x = x
+        self.rect.y = y
         self.speed = 5
         self.health = 1
 
@@ -18,16 +18,20 @@ class Ship(pygame.sprite.Sprite):
         self.rect.x += self.speed
 
     def update(self):
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_LEFT:
-                self.Ship.move_left()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_LEFT:
+                    self.move_left()
 
-            elif event.key == pygame.K_RIGHT:
-                self.Ship.move_right()
+                elif event.key == pygame.K_RIGHT:
+                    self.move_right()
 
-            elif event.key == pygame.K_SPACE:
-                ship_bullet = Ship_bullet.shipBullet()
-                ship_bullet.rect.x = ship.rect.x
-                ship_bullet.rect.y = ship.rect.y - 3
-                all_sprites.add(ship_bullet)
-                ship_bullet_list.add(ship_bullet)
+                elif event.key == pygame.K_SPACE:
+                    ship_bullet = Ship_bullet.shipBullet()
+                    ship_bullet.rect.x = ship.rect.x
+                    ship_bullet.rect.y = ship.rect.y - 3
+                    all_sprites.add(ship_bullet)
+                    ship_bullet_list.add(ship_bullet)

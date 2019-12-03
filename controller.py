@@ -46,15 +46,16 @@ class Controller:
 		begin_y = 10
 		row = 5
 		column = 6
-		x = 0
-		y = 0
-		for i in range(row):
-			for i in range(column):
-				enemy = Enemy(begin_x + x, begin_y + y)
+		x_int = 0
+		y_int = 0
+		for x in range(row):
+			enemy = Enemy(10 + (x * 25), begin_y)
+			for y in range(column):
+				enemy = Enemy(begin_x, begin_y + y_int)
 				all_sprites.add(enemy)
 				enemy_list.add(enemy)
-				y += 20
-				x += 25
+				y_int += 20
+
 		ship = ship.Ship(400,675)
 
 		block = block.Block(400, 600, 5, 5)

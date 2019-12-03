@@ -17,35 +17,6 @@ class Controller:
         pygame.font.init()
         self.state = "GAME"
 
-    def setupSprites(self):
-        all_sprites = pygame.sprite.Group()
-        block_list = pygame.sprite.Group()
-        enemy_list = pygame.sprite.Group()
-        enemy_bullet_list = pygame.sprite.Group()
-        ship_bullet_list = pygame.sprite.Group()
-
-        begin_x = 10
-        begin_y = 10
-        row = 5
-        column = 6
-        x = 0
-        y = 0
-        for i in range(row):
-            for i in range(column):
-                enemy = Enemy.Enemy(begin_x + x, begin_y + y)
-                all_sprites.add(enemy)
-                enemy_list.add(enemy)
-                y += 20
-                x += 25
-
-        ship = Ship.Ship(400, 675)
-
-        block = Block.Block(400, 600, 5, 5)
-
-        all_sprites.add(ship)
-        all_sprites.add(block)
-        block_list.add(block)
-
     def mainLoop(self):
         while True:
             if (self.state == "GAME"):
@@ -102,13 +73,47 @@ class Controller:
 
         self.gameIntro()
 
+        all_sprites = pygame.sprite.Group()
+        block_list = pygame.sprite.Group()
+        enemy_list = pygame.sprite.Group()
+        enemy_bullet_list = pygame.sprite.Group()
+        ship_bullet_list = pygame.sprite.Group()
+        begin_x = 10
+        begin_y = 10
+        row = 5
+        column = 6
+        x_int = 0
+        y_int = 0
+        num_enemies = 30
+        for i in range(num_enemies):
+            for x in range(column):
+                for y in range(row):
+                    enemy = Enemy.Enemy(begin_x+x*100,begin_y+y*100)
+                    enemy_list.add(enemy)
+                    all_sprites.add(enemy)
+
+        """for x in range(row):
+            enemy = Enemy((10 + (x * 25)), begin_y)
+            for y in range(column):
+                enemy = Enemy(begin_x, begin_y + y_int)
+                all_sprites.add(enemy)
+                enemy_list.add(enemy)
+                y_int += 20"""
+
+        ship = Ship.Ship(250, 250)
+        block = Block.Block(400, 600, 5, 5)
+
+        all_sprites.add(ship)
+        all_sprites.add(block)
+        block_list.add(block)
+
         life = 3
-        self.setupSprites()
 
         while self.state == "GAME":
             self.background.fill((250, 250, 250))
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
+                    pygame.quit()
                     sys.exit()
 
             for bullet in ship_bullet_list:  # check for collision
@@ -131,16 +136,17 @@ class Controller:
                     life -= 1
 
             # redraw the entire screen
-            all_sprites.enemy.update()
+            all_sprites.update()
             for enemy in enemy_list:
                 enemy.movingCloser()
             self.screen.blit(self.background, (0, 0))
             if (life == 0):
                 self.state = "GAMEOVER"
-            font = pygame.fontSysFont(None, 30, True)
-            enemy_left = font.render("Enemies Remaining:" + str(len(self.enemies)), False, (250, 0, 0))
+            font = pygame.font.SysFont(None, 30, True)
+            enemy_left = font.render("Enemies Remaining:" + str(len(enemy_list.sprites())), False, (250, 0, 0))
+
             self.screen.blit(enemy_left, (10, 50))
-            self.all_sprite.draw(self.screen)
+            all_sprites.draw(self.screen)
             pygame.display.flip()
 
     # score list
