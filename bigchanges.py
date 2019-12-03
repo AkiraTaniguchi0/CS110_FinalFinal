@@ -57,13 +57,18 @@ class Controller:
         #self.screen.fill((255, 255, 255))
 
         background = self.background
-        background.fill((250, 250, 250))
+        background.fill((0, 0, 0))
 
         font = pygame.font.Font('freesansbold.ttf', 20)
-        text = font.render('Galaxy Defender: Press Y to play or N to quit', 1,(0,0,0))
+        title = pygame.image.load("assets/galaxy_defender.png").convert_alpha()
+        titlepos = title.get_rect()
+        titlepos.centerx = background.get_rect().centerx
+        text = font.render('Press Y to play or N to quit', 1,(255,255,255))
         textpos = text.get_rect()
         textpos.centerx = background.get_rect().centerx
+        textpos.centery = background.get_rect().centery
         background.blit(text, textpos)
+        background.blit(title, titlepos)
         self.screen.blit(background, (0, 0))
         pygame.display.update()
 
