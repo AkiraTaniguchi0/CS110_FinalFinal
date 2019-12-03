@@ -79,7 +79,6 @@ class Controller:
 	def gameLoop(self):
 		pygame.key.set_repeat(1,50)
 		life = 3
-		spaceship = Ship.Ship(390,290, "assets/ship.png")
 		setupSprites()
 		while self.state == "GAME":
 			self.background.fill(250,250,250)
