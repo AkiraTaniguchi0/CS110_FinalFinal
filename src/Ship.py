@@ -1,10 +1,10 @@
-import pygame as pg
+import pygame as pygame
 from src import Ship_bullet
-class Ship(pg.sprite.Sprite):
+class Ship(pygame.sprite.Sprite):
 
     def __init__(self,x,y):
-        pg.sprite.Sprite.__init__(self)
-        self.image = pygame.image.load("../assets/ship.png").convert_alpha()
+        pygame.sprite.Sprite.__init__(self)
+        self.image = pygame.image.load("assets/ship.png").convert_alpha()
         self.x = x
         self.y = y
         self.rect = self.image.get_rect()

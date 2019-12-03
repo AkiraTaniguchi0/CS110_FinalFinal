@@ -1,8 +1,8 @@
-import pygame as pg
+import pygame as pygame
 
-class enemyBullet(pg.sprite.Sprite):
+class enemyBullet(pygame.sprite.Sprite):
     def __init__(self):
-        pg.sprite.Sprite.__init__(self)
+        pygame.sprite.Sprite.__init__(self)
         self.image = pygame.Surface([5,10])
         self.image.fill(0,0,255)
         self.rect = self.image.get_rect()

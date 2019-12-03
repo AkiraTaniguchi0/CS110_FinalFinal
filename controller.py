@@ -34,11 +34,11 @@ class Controller:
 			pygame.display.update()
 
 	def createGroups(self):
-		all_sprites = pg.sprite.Group()
-		block_list = pg.sprite.Group()
-		enemy_list = pg.sprite.Group()
-		enemy_bullet_list = pg.sprite.Group()
-		ship_bullet_list = pg.sprite.Group()
+		all_sprites = pygame.sprite.Group()
+		block_list = pygame.sprite.Group()
+		enemy_list = pygame.sprite.Group()
+		enemy_bullet_list = pygame.sprite.Group()
+		ship_bullet_list = pygame.sprite.Group()
 
 	def setupSprites(self):
 		createGroups()
@@ -86,16 +86,16 @@ class Controller:
 				if event.type == pygame.QUIT:
 					sys.exit()
 			for bullet in ship_bullet_list:#check for collision
-				enemy_hit = pg.sprite.spritecollide(bullet, enemy_list, dokill=True)
-				block_hit = pg.sprite.spritecollide(bullet, block_list, dokill=True)
+				enemy_hit = pygame.sprite.spritecollide(bullet, enemy_list, dokill=True)
+				block_hit = pygame.sprite.spritecollide(bullet, block_list, dokill=True)
 			for enemy in enemy_list:
 				bullet.kill()
 				score += 1
 			for block in block_list:
 				bullet.kill()
 			for bullet in enemy_bullet_list:
-				ship_hit = pg.sprite.collide_rect(bullet, ship)
-				block_hit = pg.sprite.spritecollide(bullet, block_list, dokill=True)
+				ship_hit = pygame.sprite.collide_rect(bullet, ship)
+				block_hit = pygame.sprite.spritecollide(bullet, block_list, dokill=True)
 				if ship_hit:
 					spaceship.rect.x = 390
 					spaceship.rect.y = 290
