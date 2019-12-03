@@ -17,20 +17,3 @@ class Ship(pygame.sprite.Sprite):
 
     def move_right(self):
         self.rect.x += self.speed
-
-    def update(self):
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-            elif event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_LEFT:
-                    self.move_left()
-
-                elif event.key == pygame.K_RIGHT:
-                    self.move_right()
-
-                elif event.key == pygame.K_SPACE:
-                    ship_bullet = Ship_bullet.shipBullet(self.rect.x,self.rect.y-3)
-                    all_sprites.add(ship_bullet)
-                    ship_bullet_list.add(ship_bullet)

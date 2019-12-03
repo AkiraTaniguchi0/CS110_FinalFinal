@@ -111,7 +111,7 @@ class Controller:
         all_sprites.add(ship)
         all_sprites.add(block)
         block_list.add(block)
-
+        score = 0
         life = 3
 
         while self.state == "GAME":
@@ -120,6 +120,17 @@ class Controller:
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
+                elif event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_LEFT:
+                        ship.move_left()
+
+                    elif event.key == pygame.K_RIGHT:
+                        ship.move_right()
+
+                    elif event.key == pygame.K_SPACE:
+                        ship_bullet = Ship_bullet.shipBullet(ship.rect.x, ship.rect.y - 3)
+                        all_sprites.add(ship_bullet)
+                        ship_bullet_list.add(ship_bullet)
 
             for bullet in ship_bullet_list:  # check for collision
                 enemy_hits = pygame.sprite.spritecollide(bullet, enemy_list, dokill=True)
@@ -141,7 +152,7 @@ class Controller:
                     life -= 1
 
             # redraw the entire screen
-             all_sprites.update()
+            all_sprites.update()
             for enemy in enemy_list:
                 enemy.movingCloser()
             self.screen.blit(self.background, (0, 0))
