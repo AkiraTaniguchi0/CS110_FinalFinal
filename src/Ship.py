@@ -1,5 +1,6 @@
 import pygame as pygame
 from src import Ship_bullet
+import controller
 class Ship(pygame.sprite.Sprite):
 
     def __init__(self,x,y):
@@ -30,8 +31,6 @@ class Ship(pygame.sprite.Sprite):
                     self.move_right()
 
                 elif event.key == pygame.K_SPACE:
-                    ship_bullet = Ship_bullet.shipBullet()
-                    ship_bullet.rect.x = ship.rect.x
-                    ship_bullet.rect.y = ship.rect.y - 3
+                    ship_bullet = Ship_bullet.shipBullet(self.rect.x,self.rect.y-3)
                     all_sprites.add(ship_bullet)
                     ship_bullet_list.add(ship_bullet)

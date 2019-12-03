@@ -141,7 +141,7 @@ class Controller:
                     life -= 1
 
             # redraw the entire screen
-            all_sprites.update()
+             all_sprites.update()
             for enemy in enemy_list:
                 enemy.movingCloser()
             self.screen.blit(self.background, (0, 0))
