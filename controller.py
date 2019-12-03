@@ -41,6 +41,7 @@ class Controller:
 		ship_bullet_list = pg.sprite.Group()
 
 	def setupSprites(self):
+		createGroups()
 		begin_x = 10
 		begin_y = 10
 		row = 5
@@ -79,6 +80,7 @@ class Controller:
 		pygame.key.set_repeat(1,50)
 		life = 3
 		spaceship = Ship.Ship(390,290, "assets/ship.png")
+		setupSprites()
 		while self.state == "GAME":
 			self.background.fill(250,250,250)
 			for event in pygame.event.get():
