@@ -90,47 +90,42 @@ class Controller:
         x_int = 0
         y_int = 0
         num_enemies = 30
-        for i in range(num_enemies):
-            for x in range(column):
-                for y in range(row):
-                    enemy = Enemy.Enemy(begin_x+x*100,begin_y+y*100)
-                    enemy_list.add(enemy)
-                    all_sprites.add(enemy)
-
-        """for x in range(row):
-            enemy = Enemy((10 + (x * 25)), begin_y)
-            for y in range(column):
-                enemy = Enemy(begin_x, begin_y + y_int)
-                all_sprites.add(enemy)
+        for x in range(column):
+            for y in range(row):
+                enemy = Enemy.Enemy(begin_x+x*75,begin_y+y*50)
                 enemy_list.add(enemy)
-                y_int += 20"""
+                all_sprites.add(enemy)
 
-        ship = Ship.Ship(250, 250)
-        block = Block.Block(400, 600, 5, 5)
+        ship = Ship.Ship(250, 575)
+        block = Block.Block(400, 400, 10, 10)
 
         all_sprites.add(ship)
         all_sprites.add(block)
         block_list.add(block)
         score = 0
         life = 3
+        shoot_control = True
 
         while self.state == "GAME":
-            self.background.fill((250, 250, 250))
+            self.background.fill((0, 0, 0))
+            keys = pygame.key.get_pressed()
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
                 elif event.type == pygame.KEYDOWN:
+
                     if event.key == pygame.K_LEFT:
                         ship.move_left()
-
+                        shoot_control = True
                     elif event.key == pygame.K_RIGHT:
                         ship.move_right()
-
-                    elif event.key == pygame.K_SPACE:
-                        ship_bullet = Ship_bullet.shipBullet(ship.rect.x, ship.rect.y - 3)
+                        shoot_control = True
+                    elif event.key == pygame.K_SPACE and shoot_control:
+                        ship_bullet = Ship_bullet.shipBullet(ship.rect.x+10, ship.rect.y - 5)
                         all_sprites.add(ship_bullet)
                         ship_bullet_list.add(ship_bullet)
+                        shoot_control = False
 
             for bullet in ship_bullet_list:  # check for collision
                 enemy_hits = pygame.sprite.spritecollide(bullet, enemy_list, dokill=True)
