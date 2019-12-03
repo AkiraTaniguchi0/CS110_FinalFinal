@@ -6,6 +6,7 @@
 
 # bullet class ideas from YouTube video: https://www.youtube.com/watch?v=PpdJjaiLX6A
 
+# Game intro menu ideas from site: https://redhulimachinelearning.com/game-development/create-a-game-in-pygame-game-menu-and-sound-music/
 * Your ATP
 
 | Step                  | Procedure     | Expected Results  | Actual Results |

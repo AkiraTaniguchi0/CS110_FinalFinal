@@ -21,10 +21,11 @@ class Controller:
 		while self.state == "INTRO":
 			for event in pygame.event.get():
 				if event.type == pygame.QUIT:
+					pygame.quit()
 					sys.exit()
 				if event.type == pygame.MOUSEBUTTONDOWN:
 					self.state == "GAME"
-					break
+
 			self.screen.fill(255,255,255)
 			text = pygame.font.Font('freesansbold.ttf', 115)
 			TextSurf, TextRect = ('Galaxy Defender', largeText)
@@ -111,14 +112,15 @@ class Controller:
 			pygame.display.flip()
 	#score list
 	def updateFile(self):
-		f = open('scores.txt','r') #opens the file in read mode
-		file = f.readlines() #reads all the lines in as a list
-		last = int(file[0]) #get the first line of the file
-		if last < int(score): #sees if current score is greater than the previous best
-			f.close() #closes/saves the file
-			file = open('scores.txt', 'w') #reopens it in write mode
-			file.write(str(score)) #writes the best score
-			file.close() #closes/saves the file
+		"""Keeps track of and updates score"""
+		f = open('scores.txt','r')
+		file = f.readlines()
+		last = int(file[0])
+		if last < int(score):
+			f.close()
+			file = open('scores.txt', 'w')
+			file.write(str(score))
+			file.close()
 			return score
 		return last
 
