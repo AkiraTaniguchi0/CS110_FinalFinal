@@ -18,20 +18,19 @@ class Controller:
 
 #the game intro screen
 	def game_intro(self):
-		intro = True
-		while intro:
-			for i in pygame.event.get():
+		while self.state == "INTRO":
+			for event in pygame.event.get():
 				if event.type == pygame.QUIT:
 					sys.exit()
 				if event.type == pygame.MOUSEBUTTONDOWN:
 					self.state == "GAME"
 					break
-        	gameDisplay.fill(white)
-    		text = pygame.font.Font('freesansbold.ttf', 115)
-    		TextSurf, TextRect = ('Galaxy Defender', largeText)
-    		TextRect.center = ((display_width / 2), (display_height / 2))
-   			gameDisplay.blit(TextSurf, TextRect)
-    		pygame.display.update()
+			self.screen.fill(255,255,255)
+			text = pygame.font.Font('freesansbold.ttf', 115)
+			TextSurf, TextRect = ('Galaxy Defender', largeText)
+			TextRect.center = ((display_width / 2), (display_height / 2))
+			self.screen.blit(TextSurf, TextRect)
+			pygame.display.update()
 
 	def createGroups(self):
 		all_sprites = pg.sprite.Group()
@@ -69,7 +68,7 @@ class Controller:
 		msg = font.render("Click Screen To Play Again", False, (0,0,0))
 		self.screen.blit(message, (self.width / 2, self.height / 2))
 		pygame.display.flip()
-		while True:
+		while self.state == "GAMEOVER":
 			for event in pygame.event.get():
 				if event.type == pygame.QUIT:
 					sys.exit()
@@ -94,8 +93,8 @@ class Controller:
 			for block in block_list:
 				bullet.kill()
 			for bullet in enemy_bullet_list:
-            	ship_hit = pg.sprite.collide_rect(bullet, ship)
-        		block_hit = pg.sprite.spritecollide(bullet, block_list, dokill=True)
+				ship_hit = pg.sprite.collide_rect(bullet, ship)
+				block_hit = pg.sprite.spritecollide(bullet, block_list, dokill=True)
 				if ship_hit:
 					spaceship.rect.x = 390
 					spaceship.rect.y = 290
@@ -106,12 +105,12 @@ class Controller:
 			if(life == 0):
 				self.state = "GAMEOVER"
 			font = pygame.fontSysFont(None, 30, True)
-			enemy_left = font.render("Enemies Remaining:" + str(len(self.enemies)), False, (250,0,0)
+			enemy_left = font.render("Enemies Remaining:" + str(len(self.enemies)), False, (250,0,0))
 			self.screen.blit(enemy_left, (10,50))
 			self.all_sprite.draw(self.screen)
 			pygame.display.flip()
- #score list
- 	def updateFile(self):
+	#score list
+	def updateFile(self):
 		f = open('scores.txt','r') #opens the file in read mode
 		file = f.readlines() #reads all the lines in as a list
 		last = int(file[0]) #get the first line of the file
@@ -126,8 +125,8 @@ class Controller:
 	def mainLoop(self):
 		while True:
 			if(self.state == "GAME"):
-                self.gameLoop()
-      		elif(self.state == "GAMEOVER"):
-       		 	self.gameOver()
+				self.gameLoop()
+			elif(self.state == "GAMEOVER"):
+				self.gameOver()
 			elif(self.state == "INTRO"):
 				self.game_intro()
