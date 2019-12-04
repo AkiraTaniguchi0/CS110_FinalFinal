@@ -15,6 +15,7 @@ class Controller:
         self.screen = pygame.display.set_mode((self.width, self.height))
         self.background = pygame.image.load("assets/spacebackground.png").convert()
         pygame.font.init()
+        pygame.display.set_caption("Galaxy Defender")
         self.state = "GAME"
         self.all_sprites = pygame.sprite.Group()
         self.block_list = pygame.sprite.Group()
@@ -25,20 +26,21 @@ class Controller:
     def mainLoop(self):
         while True:
             if (self.state == "GAME"):
-                self.screen.blit(self.background, [0,0])
+#                self.screen.blit(self.background, [0,0])
                 self.gameLoop()
             elif (self.state == "GAMEOVER"):
+#                self.screen.blit(self.background, [0,0])
                 self.gameOver()
 
     def gameIntro(self):
         font = pygame.font.Font('freesansbold.ttf', 20)
         title = pygame.image.load("assets/galaxy_defender.png").convert_alpha()
         titlepos = title.get_rect()
-        titlepos.centerx = self.background.get_rect().centerx
+        titlepos.centerx = self.screen.get_rect().centerx
         text = font.render('Press Y to play or N to quit', 1,(255,255,255))
         textpos = text.get_rect()
-        textpos.centerx = self.background.get_rect().centerx
-        textpos.centery = self.background.get_rect().centery
+        textpos.centerx = self.screen.get_rect().centerx
+        textpos.centery = self.screen.get_rect().centery
         self.background.blit(text, textpos)
         self.background.blit(title, titlepos)
         self.screen.blit(self.background, (0, 0))
@@ -76,10 +78,7 @@ class Controller:
 
     def gameLoop(self):
         pygame.key.set_repeat(1, 50)
-
         self.gameIntro()
-
-
         begin_x = 10
         begin_y = 10
         row = 5
@@ -151,8 +150,9 @@ class Controller:
             for enemy in self.enemy_list:
                 enemy.movingCloser()
             self.screen.blit(self.background, (0, 0))
-            if (life == 0 or life < 0):
+            if (life <= 0):
                 self.state = "GAMEOVER"
+                break
 
             font = pygame.font.SysFont(None, 30, True)
             enemy_left = font.render("Enemies Remaining:" + str(len(self.enemy_list.sprites())), False, (250, 0, 0))
