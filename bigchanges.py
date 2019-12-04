@@ -24,7 +24,8 @@ class Controller:
         self.ship_bullet_list = pygame.sprite.Group()
         self.life = 1
         self.score = 0
-        self.restart = False
+        self.level = 1
+        self.nextlevel = False
         self.state = True
 
     def mainLoop(self):
@@ -79,7 +80,7 @@ class Controller:
         pygame.display.update()
         pygame.key.set_repeat(1, 50)
 
-        if not self.restart:
+        if not self.nextlevel:
             self.gameIntro()
 
         begin_x = 10
@@ -94,6 +95,8 @@ class Controller:
         for x in range(column):
             for y in range(row):
                 enemy = Enemy.Enemy(begin_x+x*75,begin_y+y*50)
+                enemy.speed += self.level
+                print(enemy.speed)
                 self.enemy_list.add(enemy)
                 self.all_sprites.add(enemy)
         beg_y = 500
@@ -107,11 +110,8 @@ class Controller:
 
 
         ship = Ship.Ship(250, 575)
-
-
         self.all_sprites.add(ship)
-        self.all_sprites.add(block)
-        self.block_list.add(block)
+
         shoot_control = True
 
         while self.state:
@@ -135,7 +135,10 @@ class Controller:
                         shoot_control = False
 
             for enemy in self.enemy_list:
-                if random.randrange(1000) == 0:
+                levelcap = self.level
+                if levelcap > 10:
+                    levelcap = 10
+                if random.randrange(1100 - levelcap*100) == 0:
                     enemy_bullet = Enemy_bullet.enemyBullet(enemy.rect.x + 10, enemy.rect.y + 5)
                     self.all_sprites.add(enemy_bullet)
                     self.enemy_bullet_list.add(enemy_bullet)
@@ -162,8 +165,10 @@ class Controller:
             self.all_sprites.update()
             for enemy in self.enemy_list:
                 enemy.movingCloser()
+                if enemy.rect.y >= 485:
+                    for block in self.block_list:
+                        block.kill()
             self.screen.blit(self.background, (0, 0))
-
 
             font = pygame.font.SysFont(None, 30, True)
             enemy_left = font.render("Enemies Remaining:" + str(len(self.enemy_list.sprites())), False, (250, 0, 0))
@@ -174,6 +179,18 @@ class Controller:
 
             if (self.life <= 0):
                 self.state = False
+
+            for enemy in self.enemy_list:
+                if enemy.rect.y >= 550:
+                    self.state = False
+
+            if len(self.enemy_list) == 0:
+                self.all_sprites.empty()
+                for bullet in self.ship_bullet_list:
+                    bullet.kill()
+                self.nextlevel = True
+                self.level += 1
+                break
     # score
         def updateFile(self):
             f = open('scores.txt', 'r')
