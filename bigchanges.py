@@ -14,6 +14,7 @@ class Controller:
         self.height = height
         self.screen = pygame.display.set_mode((self.width, self.height))
         self.background = pygame.image.load("assets/spacebackground.png").convert()
+        self.background1 = pygame.image.load("assets/game_screen.png").convert()
         pygame.font.init()
         self.state = True
         pygame.display.set_caption("Galaxy Defender")
@@ -64,22 +65,16 @@ class Controller:
     def gameOver(self):
         self.all_sprites.empty()
         font = pygame.font.Font('freesansbold.ttf', 20)
-        text = font.render("Press Y To Play Again, N to quit", 1, (255, 255, 255))
+        text = font.render("Thanks for playing", 1, (255, 255, 255))
         textpos = text.get_rect()
         textpos.centerx = self.background.get_rect().centerx
-        self.background.blit(text, (400,200))
-        self.screen.blit(self.background, (0, 0))
+        self.background1.blit(text, textpos)
+        self.screen.blit(self.background1, (0, 0))
         pygame.display.update()
-        while not self.state:
-            event = pygame.event.poll()
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_y:
-                    self.state = True
-                    self.restart = True
-                    print("blah")
-                elif event.key == pygame.K_n:
-                    pygame.quit()
-                    sys.exit()
+        event = pygame.event.poll()
+        if event.type == pygame.KEYDOWN:
+            pygame.quit()
+            sys.exit()
 
     def gameLoop(self):
         pygame.key.set_repeat(1, 50)
