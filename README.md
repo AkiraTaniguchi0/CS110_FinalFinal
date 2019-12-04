@@ -12,7 +12,7 @@
 
 #
 
-![ciass_diagram](assets/class_diagram.jpg)
+![ciass_diagram](assets/ClassDiagram.png)
 
 * Your ATP
 
