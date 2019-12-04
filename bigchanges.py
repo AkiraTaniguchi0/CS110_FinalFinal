@@ -21,6 +21,8 @@ class Controller:
         self.enemy_list = pygame.sprite.Group()
         self.enemy_bullet_list = pygame.sprite.Group()
         self.ship_bullet_list = pygame.sprite.Group()
+        self.life = 3
+        self.score = 0
 
     def mainLoop(self):
         while True:
@@ -104,8 +106,6 @@ class Controller:
         self.all_sprites.add(ship)
         self.all_sprites.add(block)
         self.block_list.add(block)
-        score = 0
-        life = 3
         shoot_control = True
 
         while self.state == "GAME":
@@ -139,7 +139,7 @@ class Controller:
                 block_hits = pygame.sprite.spritecollide(bullet, self.block_list, dokill=True)
                 for enemy in enemy_hits:
                     bullet.kill()
-                    score += 1
+                    self.score += 1
                 for block in block_hits:
                     bullet.kill()
 
@@ -150,14 +150,14 @@ class Controller:
                     bullet.kill()
                 if ship_hit:
                     bullet.kill()
-                    life -= 1
+                    self.life -= 1
 
             # redraw the entire screen
             self.all_sprites.update()
             for enemy in self.enemy_list:
                 enemy.movingCloser()
             self.screen.blit(self.background, (0, 0))
-            if (life == 0 or life < 0):
+            if (self.life == 0 or self.life < 0):
                 self.state = "GAMEOVER"
 
             font = pygame.font.SysFont(None, 30, True)
@@ -172,12 +172,12 @@ class Controller:
             f = open('scores.txt', 'r')
             file = f.readlines()
             last = int(file[0])
-            if last < int(score):
+            if last < int(self.score):
                 f.close()
                 file = open('scores.txt', 'w')
-                file.write(str(score))
+                file.write(str(self.score))
                 file.close()
-                return score
+                return self.score
             return last
 
 
