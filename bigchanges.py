@@ -106,7 +106,7 @@ class Controller:
             
 
         ship = Ship.Ship(250, 575)
-        block = Block.Block(400, 400, 10, 10)
+      
 
         self.all_sprites.add(ship)
         self.all_sprites.add(block)
