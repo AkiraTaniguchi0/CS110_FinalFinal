@@ -18,19 +18,22 @@
 ![gui_design3](assets/IMG_2818.jpg)
 ![ciass_diagram](assets/ClassDiagram.png)
 
+# LINK TO SLIDES:
+# https://docs.google.com/presentation/d/1NOqh_1SicPIPfOICfkpW-ONSUlwDmQRWSwyoCbHV32M/edit#slide=id.g33aee8826e_9_5
+
 * Your ATP
 
 | Step                  | Procedure     | Expected Results  | Actual Results |
 | ----------------------|:-------------:| -----------------:| -------------- |
 |  1  | Open terminal, navigate to folder, and type python3 main.py  | GUI window appears and displays game intro screen  |          |
-|  2  | Click window exit button  | Program ends and closes  |                 |
-|  3  | Click screen | Game starts and player is able to move left and right and shoot bullets  |           |
+|  2  | Click window exit button or type n  | Program ends and closes  |                 |
+|  3  | Type y | Game starts and player is able to move left and right and shoot bullets  |           |
 |  4  | Left/right arrow key pressed  | Player moves left/right respectively  |            |
 |  5  | Push spacebar  | Player shoots bullet  |           |
-|  6  | Player hit by enemy bullet  | Player loses life   |            |
+|  6  | Player hit by enemy bullet  | Player loses life  |            |
 |  7  | Player's life count reaches 0  | Player loses game  |            |
 |  8  | Bullet hits enemy  | Enemy dies, bullet sprite killed, score updated by 1 point  |           |
-|  9  | Any bullet hits barrier  | Barrier dies  |             |
-|  10  | Kill one enemy  | Score updates by 1  |            |
+|  9  | Any bullet hits barrier  | Barrier block dies  |             |
+|  10  | Kill one enemy or barrier block remains  | Score updates by 1(per enemy/block)  |            |
 |  11  | Lose game  | GAME OVER screen shows, score is displayed  |           |
 |  12  | Close game  | Program ends and closes  |           |
