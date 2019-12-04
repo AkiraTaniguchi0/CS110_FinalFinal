@@ -42,12 +42,12 @@ class Controller:
         title = pygame.image.load("assets/galaxy_defender.png").convert_alpha()
         titlepos = title.get_rect()
         titlepos.centerx = self.screen.get_rect().centerx
-        text1 = font.render('You Must Move Before Firing Another Bullet.', 1, (200,255,255))
+        text1 = font.render('You Must Move With Arrow Keys Before Firing Another Bullet With Space Bar.', 1, (200,255,255))
         text2 = font.render('When Aliens Hit The Barrier Layer, All Barriers Will Be Destroyed.', 1, (200,255,255))
-        text3 = font.render("Bullets Kill You; You Have 3 Lives.", 1, (200,255,255))
+        text3 = font.render("Bullets Kill You; You Have 1 Life.", 1, (200,255,255))
         text4 = font.render("Eliminate All Aliens To Progress To The Next Level; Levels Increase In Difficulty.", 1, (200,255,255))
         text5 = font.render("Each Alien Kill = 1 Point; Each Barrier Block Remaining = 1 Point.", 1, (200,255,255))
-        text = font.render('Press Y To Play Or N To Quit.', 1,(255,200,255))
+        text = font.render('Press Y To Play Or N To Quit.', 1, (255,200,255))
         textpos = text.get_rect()
         textpos.centerx = self.screen.get_rect().centerx
         textpos.centery = self.screen.get_rect().centery - 30
