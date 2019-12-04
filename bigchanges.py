@@ -14,7 +14,7 @@ class Controller:
         self.height = height
         self.screen = pygame.display.set_mode((self.width, self.height))
         self.background = pygame.image.load("assets/spacebackground.png").convert()
-        self.background1 = pygame.image.load("assets/game_screen.png").convert()
+        self.background1 = pygame.image.load("assets/spacebackground.png").convert()
         pygame.font.init()
         pygame.display.set_caption("Galaxy Defender")
         self.all_sprites = pygame.sprite.Group()
