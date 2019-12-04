@@ -1,6 +1,6 @@
-import bigchanges
+import controller
 
 def main():
-    main_window = bigchanges.Controller()
+    main_window = controller.Controller()
     main_window.mainLoop()
 main()
