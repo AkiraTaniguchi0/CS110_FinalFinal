@@ -13,36 +13,31 @@ class Controller:
         self.width = width
         self.height = height
         self.screen = pygame.display.set_mode((self.width, self.height))
-        self.background = pygame.Surface(self.screen.get_size()).convert()
+        self.background = pygame.image.load("assets/spacebackground.png").convert()
         pygame.font.init()
         self.state = "GAME"
 
     def mainLoop(self):
         while True:
             if (self.state == "GAME"):
+                self.screen.blit(self.background, [0,0])
                 self.gameLoop()
             elif (self.state == "GAMEOVER"):
                 self.gameOver()
 
     def gameIntro(self):
-        #self.screen.fill((255, 255, 255))
-
-        background = self.background
-        background.fill((0, 0, 0))
-
         font = pygame.font.Font('freesansbold.ttf', 20)
         title = pygame.image.load("assets/galaxy_defender.png").convert_alpha()
         titlepos = title.get_rect()
-        titlepos.centerx = background.get_rect().centerx
+        titlepos.centerx = self.background.get_rect().centerx
         text = font.render('Press Y to play or N to quit', 1,(255,255,255))
         textpos = text.get_rect()
-        textpos.centerx = background.get_rect().centerx
-        textpos.centery = background.get_rect().centery
-        background.blit(text, textpos)
-        background.blit(title, titlepos)
-        self.screen.blit(background, (0, 0))
+        textpos.centerx = self.background.get_rect().centerx
+        textpos.centery = self.background.get_rect().centery
+        self.background.blit(text, textpos)
+        self.background.blit(title, titlepos)
+        self.screen.blit(self.background, (0, 0))
         pygame.display.update()
-
         while True:
             event = pygame.event.poll()
             if event.type == pygame.KEYDOWN:
@@ -145,7 +140,6 @@ class Controller:
                     spaceship.rect.x = 390
                     spaceship.rect.y = 290
                     life -= 1
-
             # redraw the entire screen
             all_sprites.update()
             for enemy in enemy_list:
@@ -173,5 +167,3 @@ class Controller:
             file.close()
             return score
         return last
-
-
