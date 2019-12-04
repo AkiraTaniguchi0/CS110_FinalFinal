@@ -7,6 +7,11 @@
 # bullet class ideas from YouTube video: https://www.youtube.com/watch?v=PpdJjaiLX6A
 
 # Game intro menu ideas from site: https://redhulimachinelearning.com/game-development/create-a-game-in-pygame-game-menu-and-sound-music/
+
+# background image ("spacebackground.png") from site: https://spencer2124.wordpress.com/2014/06/04/8-bit-art-progress/
+
+#
+
 * Your ATP
 
 | Step                  | Procedure     | Expected Results  | Actual Results |
