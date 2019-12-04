@@ -82,9 +82,6 @@ class Controller:
                     sys.exit()
 
     def gameLoop(self):
-        self.background.blit(text, textpos)
-        self.background.blit(title, titlepos)
-        self.screen.blit(self.background, (0, 0))
         pygame.display.update()
         pygame.key.set_repeat(1, 50)
 
