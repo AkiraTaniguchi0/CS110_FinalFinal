@@ -22,7 +22,7 @@ class Controller:
         self.enemy_list = pygame.sprite.Group()
         self.enemy_bullet_list = pygame.sprite.Group()
         self.ship_bullet_list = pygame.sprite.Group()
-        self.life = 3
+        self.life = 1
         self.score = 0
         self.level = 1
         self.nextlevel = False
@@ -42,8 +42,8 @@ class Controller:
         title = pygame.image.load("assets/galaxy_defender.png").convert_alpha()
         titlepos = title.get_rect()
         titlepos.centerx = self.screen.get_rect().centerx
-        text1 = font.render('You Must Move With Arrow Keys Before Firing Another Bullet With Space Bar.', 1, (200,255,255))
-        text2 = font.render('When Aliens Hit The Barrier Layer, All Barriers Will Be Destroyed.', 1, (200,255,255))
+        text1 = font.render('After shooting(Spacebar), you must move(l/r arrow) to shoot again', 1, (200,255,255))
+        text2 = font.render('When the aliens reach your barriers, the barriers wil all disappear.', 1, (200,255,255))
         text3 = font.render("Bullets Kill You; You Have 1 Life.", 1, (200,255,255))
         text4 = font.render("Eliminate All Aliens To Progress To The Next Level; Levels Increase In Difficulty.", 1, (200,255,255))
         text5 = font.render("Each Alien Kill = 1 Point; Each Barrier Block Remaining = 1 Point.", 1, (200,255,255))
