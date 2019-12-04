@@ -15,9 +15,7 @@ class Controller:
         self.screen = pygame.display.set_mode((self.width, self.height))
         self.background = pygame.image.load("assets/spacebackground.png").convert()
         pygame.font.init()
-        self.state = True
         pygame.display.set_caption("Galaxy Defender")
-        self.state = "GAME"
         self.all_sprites = pygame.sprite.Group()
         self.block_list = pygame.sprite.Group()
         self.enemy_list = pygame.sprite.Group()
@@ -26,6 +24,7 @@ class Controller:
         self.life = 1
         self.score = 0
         self.restart = False
+        self.state = True
 
     def mainLoop(self):
         while True:
@@ -35,15 +34,6 @@ class Controller:
 
             elif not self.state:
                 self.screen.blit(self.background, [0,0])
-<<<<<<< HEAD
-=======
-            if (self.state == "GAME"):
-#                self.screen.blit(self.background, [0,0])
-                self.gameLoop()
-            elif (self.state == "GAMEOVER"):
-                self.background = pygame.image.load("assets/spacebackground.png").convert()
-                self.screen.blit(self.background, [0,0])
->>>>>>> f28de2135ea1b2633a8e24b2741308a55a56d0ec
                 self.gameOver()
 
     def gameIntro(self):
@@ -74,26 +64,16 @@ class Controller:
     def gameOver(self):
         self.all_sprites.empty()
         font = pygame.font.Font('freesansbold.ttf', 20)
-        text = font.render("Press Y To Play Again, N to quit", 1, (255, 255, 255))
+        text = font.render("Thanks for playing", 1, (255, 255, 255))
         textpos = text.get_rect()
         textpos.centerx = self.background.get_rect().centerx
         self.background.blit(text, (400,200))
         self.screen.blit(self.background, (0, 0))
         pygame.display.update()
-        while not self.state:
-            event = pygame.event.poll()
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_y:
-                    self.state = True
-                    self.restart = True
-                    print("blah")
-                elif event.key == pygame.K_n:
-                    pygame.quit()
-                    sys.exit()
-<<<<<<< HEAD
-=======
-        print("hello?")
->>>>>>> f28de2135ea1b2633a8e24b2741308a55a56d0ec
+        event = pygame.event.poll()
+        if event.type == pygame.KEYDOWN:
+            pygame.quit()
+            sys.exit()
 
     def gameLoop(self):
         pygame.key.set_repeat(1, 50)
@@ -182,9 +162,7 @@ class Controller:
             for enemy in self.enemy_list:
                 enemy.movingCloser()
             self.screen.blit(self.background, (0, 0))
-            if (self.life <= 0):
-                self.state = False
-                break
+
 
             font = pygame.font.SysFont(None, 30, True)
             enemy_left = font.render("Enemies Remaining:" + str(len(self.enemy_list.sprites())), False, (250, 0, 0))
