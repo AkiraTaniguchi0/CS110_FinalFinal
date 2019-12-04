@@ -14,6 +14,7 @@ class Controller:
         self.height = height
         self.screen = pygame.display.set_mode((self.width, self.height))
         self.background = pygame.image.load("assets/spacebackground.png").convert()
+        self.background1 = pygame.image.load("assets/game_screen.png").convert()
         pygame.font.init()
         pygame.display.set_caption("Galaxy Defender")
         self.all_sprites = pygame.sprite.Group()
@@ -31,17 +32,16 @@ class Controller:
             if self.state:
                 self.screen.blit(self.background, [0,0])
                 self.gameLoop()
-
             elif not self.state:
                 self.screen.blit(self.background, [0,0])
                 self.gameOver()
 
     def gameIntro(self):
-        font = pygame.font.Font('freesansbold.ttf', 20)
+        font = pygame.font.Font('freesansbold.ttf', 50)
         title = pygame.image.load("assets/galaxy_defender.png").convert_alpha()
         titlepos = title.get_rect()
         titlepos.centerx = self.screen.get_rect().centerx
-        text = font.render('Press Y to play or N to quit', 1,(255,255,255))
+        text = font.render('Press Y to play or N to quit', 1,(255,200,255))
         textpos = text.get_rect()
         textpos.centerx = self.screen.get_rect().centerx
         textpos.centery = self.screen.get_rect().centery
@@ -67,17 +67,32 @@ class Controller:
         text = font.render("Thanks for playing", 1, (255, 255, 255))
         textpos = text.get_rect()
         textpos.centerx = self.background.get_rect().centerx
-        self.background.blit(text, (400,200))
-        self.screen.blit(self.background, (0, 0))
+        self.background1.blit(text, textpos)
+        self.background1.blit(title, titlepos)
+        self.screen.blit(self.background1, (0, 0))
         pygame.display.update()
+<<<<<<< HEAD
         event = pygame.event.poll()
         if event.type == pygame.KEYDOWN:
             pygame.quit()
             sys.exit()
+=======
+        while not self.state:
+            event = pygame.event.poll()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_y:
+                    self.state = True
+                    self.restart = True
+                    print("blah")
+                elif event.key == pygame.K_n:
+                    pygame.quit()
+                    sys.exit()
+>>>>>>> f89f407cb04d71df8565e443775d6598c5383259
 
     def gameLoop(self):
+        pygame.display.update()
         pygame.key.set_repeat(1, 50)
-        
+
         if not self.restart:
             self.gameIntro()
 
