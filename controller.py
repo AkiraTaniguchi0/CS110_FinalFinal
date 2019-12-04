@@ -90,10 +90,10 @@ class Controller:
     def gameOver(self):
         self.all_sprites.empty()
         font = pygame.font.Font('freesansbold.ttf', 20)
-        text = font.render("Thanks for playing", 1, (255, 255, 255))
+        text = font.render("From Akira, Sam and Gilad: Thanks For Playing!!", 1, (255, 255, 255))
         textpos = text.get_rect()
         textpos.centerx = self.screen.get_rect().centerx
-        textpos.centery = self.screen.get_rect().centery
+        textpos.centery = self.screen.get_rect().centery - 30
         text1 = font.render("Press Any Key To Exit", 1, (255,200,255))
         text2 = font.render(str("High Score: " + str(self.updateFile())), 1, (255,200,255))
         text3 = font.render(str("Your Score: " + str(self.score)), 1, (255,200,255))
@@ -103,9 +103,9 @@ class Controller:
         text1pos.centerx = self.screen.get_rect().centerx
         text1pos.centery = self.screen.get_rect().centery + 120
         text2pos.centerx = self.screen.get_rect().centerx
-        text2pos.centery = self.screen.get_rect().centery + 80
+        text2pos.centery = self.screen.get_rect().centery + 50
         text3pos.centerx = self.screen.get_rect().centerx
-        text3pos.centery = self.screen.get_rect().centery + 50
+        text3pos.centery = self.screen.get_rect().centery 
         self.background1.blit(text, textpos)
         self.background1.blit(text1, text1pos)
         self.background1.blit(text2, text2pos)
