@@ -22,7 +22,7 @@ class Controller:
         self.enemy_list = pygame.sprite.Group()
         self.enemy_bullet_list = pygame.sprite.Group()
         self.ship_bullet_list = pygame.sprite.Group()
-        self.life = 1
+        self.life = 3
         self.score = 0
         self.level = 1
         self.nextlevel = False
@@ -88,7 +88,7 @@ class Controller:
             self.gameIntro()
 
         begin_x = 10
-        begin_y = 10
+        begin_y = 25
         row = 5
         column = 6
         x_int = 0
@@ -100,12 +100,11 @@ class Controller:
             for y in range(row):
                 enemy = Enemy.Enemy(begin_x+x*75,begin_y+y*50)
                 enemy.speed += self.level
-                print(enemy.speed)
                 self.enemy_list.add(enemy)
                 self.all_sprites.add(enemy)
         beg_y = 500
         for beg_x in range(50,750,150):
-            for i in range(6):
+            for i in range(3):
                 for j in range(9):
                     block = Block.Block(beg_x + j*10, beg_y + i*10, 10, 10)
                     self.block_list.add(block)
@@ -174,10 +173,14 @@ class Controller:
                         block.kill()
             self.screen.blit(self.background, (0, 0))
 
-            font = pygame.font.SysFont(None, 30, True)
+            font = pygame.font.SysFont(None, 25, True)
             enemy_left = font.render("Enemies Remaining:" + str(len(self.enemy_list.sprites())), False, (250, 0, 0))
+            score = font.render("Score:" +str(self.score), False,(250,0,0))
+            level = font.render("Level:" + str(self.level),False,(250,0,0))
             self.screen.blit(self.background, (0, 0))
-            self.screen.blit(enemy_left, (10, 50))
+            self.screen.blit(enemy_left, (575, 5))
+            self.screen.blit(score, (380, 5))
+            self.screen.blit(level, (5, 5))
             self.all_sprites.draw(self.screen)
             pygame.display.flip()
 
@@ -189,11 +192,13 @@ class Controller:
                     self.state = False
 
             if len(self.enemy_list) == 0:
+                self.score += len(self.block_list)
                 self.all_sprites.empty()
                 for bullet in self.ship_bullet_list:
                     bullet.kill()
                 self.nextlevel = True
                 self.level += 1
+                print(self.score)
                 break
     # score
         def updateFile(self):

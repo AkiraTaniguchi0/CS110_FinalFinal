@@ -16,8 +16,6 @@ class Enemy(pygame.sprite.Sprite):
         self.direction = "right"
         self.speed = 1
         self.closer = False
-        self.health = 3
-        self.difficulty = 0
 
     def update(self):
         if self.direction == "right" and self.rect.x < 770:
