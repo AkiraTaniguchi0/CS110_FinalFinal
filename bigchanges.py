@@ -47,11 +47,11 @@ class Controller:
                 self.gameOver()
 
     def gameIntro(self):
-        font = pygame.font.Font('freesansbold.ttf', 20)
+        font = pygame.font.Font('freesansbold.ttf', 50)
         title = pygame.image.load("assets/galaxy_defender.png").convert_alpha()
         titlepos = title.get_rect()
         titlepos.centerx = self.screen.get_rect().centerx
-        text = font.render('Press Y to play or N to quit', 1,(255,255,255))
+        text = font.render('Press Y to play or N to quit', 1,(255,200,255))
         textpos = text.get_rect()
         textpos.centerx = self.screen.get_rect().centerx
         textpos.centery = self.screen.get_rect().centery
