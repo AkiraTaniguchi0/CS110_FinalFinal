@@ -87,6 +87,8 @@ class Controller:
         column = 6
         x_int = 0
         y_int = 0
+   
+        
         num_enemies = 30
         for x in range(column):
             for y in range(row):
@@ -98,8 +100,8 @@ class Controller:
             for i in range(6):
                 for j in range(9):
                     block = Block.Block(beg_x + j*10, beg_y + i*10, 10, 10)
-                    block_list.add(block)
-                    all_sprites.add(block)
+                    self.block_list.add(block)
+                    self.all_sprites.add(block)
                    
             
 
