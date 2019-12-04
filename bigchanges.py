@@ -15,21 +15,23 @@ class Controller:
         self.screen = pygame.display.set_mode((self.width, self.height))
         self.background = pygame.image.load("assets/spacebackground.png").convert()
         pygame.font.init()
-        self.state = "GAME"
+        self.state = True
         self.all_sprites = pygame.sprite.Group()
         self.block_list = pygame.sprite.Group()
         self.enemy_list = pygame.sprite.Group()
         self.enemy_bullet_list = pygame.sprite.Group()
         self.ship_bullet_list = pygame.sprite.Group()
-        self.life = 3
+        self.life = 1
         self.score = 0
 
     def mainLoop(self):
         while True:
-            if (self.state == "GAME"):
+            if self.state:
                 self.screen.blit(self.background, [0,0])
                 self.gameLoop()
-            elif (self.state == "GAMEOVER"):
+
+            elif not self.state:
+                self.screen.blit(self.background, [0,0])
                 self.gameOver()
 
     def gameIntro(self):
@@ -59,28 +61,27 @@ class Controller:
 
     def gameOver(self):
         self.all_sprites.empty()
-        font = pygame.font.SysFont(None, 30)
-        msg = font.render("Click Screen To Play Again", False, (0, 0, 0))
-        self.screen.blit(msg, (self.width / 2, self.height / 2))
-        pygame.display.flip()
-
-        while self.state == "GAMEOVER":
+        font = pygame.font.Font('freesansbold.ttf', 20)
+        text = font.render("Press Y To Play Again, N to quit", 1, (255, 255, 255))
+        textpos = text.get_rect()
+        textpos.centerx = self.background.get_rect().centerx
+        self.background.blit(text, (400,200))
+        self.screen.blit(self.background, (0, 0))
+        pygame.display.update()
+        while True:
             event = pygame.event.poll()
             if event.type == pygame.KEYDOWN:
-                if event.type == pygame.K_y:
-                    self.state == "GAME"
-                elif event.type == pygame.K_n:
+                if event.key == pygame.K_y:
+                    self.state = True
+                    break
+                elif event.key == pygame.K_n:
                     pygame.quit()
                     sys.exit()
-            elif event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-
+        print("hello?")
     def gameLoop(self):
         pygame.key.set_repeat(1, 50)
 
         self.gameIntro()
-
 
         begin_x = 10
         begin_y = 10
@@ -103,7 +104,7 @@ class Controller:
         self.block_list.add(block)
         shoot_control = True
 
-        while self.state == "GAME":
+        while self.state:
             self.background.fill((0, 0, 0))
             keys = pygame.key.get_pressed()
             for event in pygame.event.get():
@@ -152,8 +153,6 @@ class Controller:
             for enemy in self.enemy_list:
                 enemy.movingCloser()
             self.screen.blit(self.background, (0, 0))
-            if (self.life == 0 or self.life < 0):
-                self.state = "GAMEOVER"
 
             font = pygame.font.SysFont(None, 30, True)
             enemy_left = font.render("Enemies Remaining:" + str(len(self.enemy_list.sprites())), False, (250, 0, 0))
@@ -162,6 +161,8 @@ class Controller:
             self.all_sprites.draw(self.screen)
             pygame.display.flip()
 
+            if (self.life <= 0):
+                self.state = False
     # score
         def updateFile(self):
             f = open('scores.txt', 'r')
