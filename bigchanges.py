@@ -38,7 +38,7 @@ class Controller:
                 self.gameOver()
 
     def gameIntro(self):
-        font = pygame.font.Font('freesansbold.ttf', 50)
+        font = pygame.font.Font('freesansbold.ttf', 40)
         title = pygame.image.load("assets/galaxy_defender.png").convert_alpha()
         titlepos = title.get_rect()
         titlepos.centerx = self.screen.get_rect().centerx
@@ -46,6 +46,10 @@ class Controller:
         textpos = text.get_rect()
         textpos.centerx = self.screen.get_rect().centerx
         textpos.centery = self.screen.get_rect().centery
+        text1 = font.render('You Must Move To Shoot A Bullet', 1, (200,255,255))
+        self.screen.blit(text1, (400,450))
+        text2= font.render('When Aliens Hit The Barrier, All Barriers Will Be Destroyed', 1, (200,255,255))
+        self.screen.blit(text2, (400, 500))
         self.background.blit(text, textpos)
         self.background.blit(title, titlepos)
         self.screen.blit(self.background, (0, 0))
