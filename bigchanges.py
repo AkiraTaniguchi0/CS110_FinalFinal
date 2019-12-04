@@ -38,6 +38,8 @@ class Controller:
 
             if (self.state == "GAME"):
 #                self.screen.blit(self.background, [0,0])
+                self.background = pygame.image.load("assets/spacebackground.png").convert()
+
                 self.gameLoop()
             elif (self.state == "GAMEOVER"):
                 self.background = pygame.image.load("assets/spacebackground.png").convert()
