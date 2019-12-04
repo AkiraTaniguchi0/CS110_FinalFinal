@@ -14,7 +14,7 @@ class Controller:
         self.height = height
         self.screen = pygame.display.set_mode((self.width, self.height))
         self.background = pygame.image.load("assets/spacebackground.png").convert()
-        self.background1 = pygame.image.load("assets/game_screen.png").convert()
+        self.background1 = pygame.image.load("assets/spacebackground.png").convert()
         pygame.font.init()
         pygame.display.set_caption("Galaxy Defender")
         self.all_sprites = pygame.sprite.Group()
@@ -38,18 +38,39 @@ class Controller:
                 self.gameOver()
 
     def gameIntro(self):
-        font = pygame.font.Font('freesansbold.ttf', 40)
+        font = pygame.font.Font('freesansbold.ttf', 20)
         title = pygame.image.load("assets/galaxy_defender.png").convert_alpha()
         titlepos = title.get_rect()
         titlepos.centerx = self.screen.get_rect().centerx
-        text = font.render('Press Y to play or N to quit', 1,(255,200,255))
+        text1 = font.render('You Must Move With Arrow Keys Before Firing Another Bullet With Space Bar.', 1, (200,255,255))
+        text2 = font.render('When Aliens Hit The Barrier Layer, All Barriers Will Be Destroyed.', 1, (200,255,255))
+        text3 = font.render("Bullets Kill You; You Have 1 Life.", 1, (200,255,255))
+        text4 = font.render("Eliminate All Aliens To Progress To The Next Level; Levels Increase In Difficulty.", 1, (200,255,255))
+        text5 = font.render("Each Alien Kill = 1 Point; Each Barrier Block Remaining = 1 Point.", 1, (200,255,255))
+        text = font.render('Press Y To Play Or N To Quit.', 1, (255,200,255))
         textpos = text.get_rect()
         textpos.centerx = self.screen.get_rect().centerx
-        textpos.centery = self.screen.get_rect().centery
-        text1 = font.render('You Must Move To Shoot A Bullet', 1, (200,255,255))
-        self.screen.blit(text1, (400,450))
-        text2= font.render('When Aliens Hit The Barrier, All Barriers Will Be Destroyed', 1, (200,255,255))
-        self.screen.blit(text2, (400, 500))
+        textpos.centery = self.screen.get_rect().centery - 30
+        text1pos = text1.get_rect()
+        text2pos = text2.get_rect()
+        text3pos = text3.get_rect()
+        text4pos = text4.get_rect()
+        text5pos = text5.get_rect()
+        text1pos.centerx = self.screen.get_rect().centerx
+        text1pos.centery = self.screen.get_rect().centery
+        text2pos.centerx = self.screen.get_rect().centerx
+        text2pos.centery = self.screen.get_rect().centery + 30
+        text3pos.centerx = self.screen.get_rect().centerx
+        text3pos.centery = self.screen.get_rect().centery + 60
+        text4pos.centerx = self.screen.get_rect().centerx
+        text4pos.centery = self.screen.get_rect().centery + 90
+        text5pos.centerx = self.screen.get_rect().centerx
+        text5pos.centery = self.screen.get_rect().centery + 120
+        self.background.blit(text1, text1pos)
+        self.background.blit(text2, text2pos)
+        self.background.blit(text3, text3pos)
+        self.background.blit(text4, text4pos)
+        self.background.blit(text5, text5pos)
         self.background.blit(text, textpos)
         self.background.blit(title, titlepos)
         self.screen.blit(self.background, (0, 0))
@@ -71,12 +92,18 @@ class Controller:
         font = pygame.font.Font('freesansbold.ttf', 20)
         text = font.render("Thanks for playing", 1, (255, 255, 255))
         textpos = text.get_rect()
-        textpos.centerx = self.background.get_rect().centerx
+        textpos.centerx = self.screen.get_rect().centerx
+        textpos.centery = self.screen.get_rect().centery
+        text1 = font.render("Press Any Key To Exit", 1, (255,200,255))
+        text1pos = text1.get_rect()
+        text1pos.centerx = self.screen.get_rect().centerx
+        text1pos.centery = self.screen.get_rect().centery + 60
         self.background1.blit(text, textpos)
+        self.background1.blit(text1, text1pos)
         self.screen.blit(self.background1, (0, 0))
         pygame.display.update()
         event = pygame.event.poll()
-        if event.type == pygame.KEYDOWN:
+        if (event.type == pygame.KEYDOWN) or (event.type == pygame.QUIT):
             pygame.quit()
             sys.exit()
 
@@ -198,7 +225,7 @@ class Controller:
                     bullet.kill()
                 self.nextlevel = True
                 self.level += 1
-                print(self.score)
+#                print(self.score)
                 break
     # score
         def updateFile(self):
