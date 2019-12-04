@@ -14,6 +14,7 @@ class Controller:
         self.height = height
         self.screen = pygame.display.set_mode((self.width, self.height))
         self.background = pygame.image.load("assets/spacebackground.png").convert()
+        self.background1 = pygame.image.load("assets/game_screen.png").convert()
         pygame.font.init()
         self.state = True
         pygame.display.set_caption("Galaxy Defender")
@@ -67,8 +68,9 @@ class Controller:
         text = font.render("Press Y To Play Again, N to quit", 1, (255, 255, 255))
         textpos = text.get_rect()
         textpos.centerx = self.background.get_rect().centerx
-        self.background.blit(text, (400,200))
-        self.screen.blit(self.background, (0, 0))
+        self.background1.blit(text, textpos)
+        self.background1.blit(title, titlepos)
+        self.screen.blit(self.background1, (0, 0))
         pygame.display.update()
         while not self.state:
             event = pygame.event.poll()
