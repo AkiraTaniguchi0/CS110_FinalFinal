@@ -8,7 +8,7 @@
 
 # Game intro menu ideas from site: https://redhulimachinelearning.com/game-development/create-a-game-in-pygame-game-menu-and-sound-music/
 
-# background image ("spacebackground.png") from site: https://spencer2124.wordpress.com/2014/06/04/8-bit-art-progress/
+# background image ("spacebackground.png") from site: https://hipwallpaper.com/8-bit-space-backgrounds/
 
 #
 

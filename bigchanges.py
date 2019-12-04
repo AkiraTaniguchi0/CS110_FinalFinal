@@ -15,7 +15,12 @@ class Controller:
         self.screen = pygame.display.set_mode((self.width, self.height))
         self.background = pygame.image.load("assets/spacebackground.png").convert()
         pygame.font.init()
+<<<<<<< HEAD
         self.state = True
+=======
+        pygame.display.set_caption("Galaxy Defender")
+        self.state = "GAME"
+>>>>>>> b9ca749ad5765b5ca786b5844e097cfbace4c223
         self.all_sprites = pygame.sprite.Group()
         self.block_list = pygame.sprite.Group()
         self.enemy_list = pygame.sprite.Group()
@@ -26,23 +31,31 @@ class Controller:
 
     def mainLoop(self):
         while True:
+<<<<<<< HEAD
             if self.state:
                 self.screen.blit(self.background, [0,0])
                 self.gameLoop()
 
             elif not self.state:
                 self.screen.blit(self.background, [0,0])
+=======
+            if (self.state == "GAME"):
+#                self.screen.blit(self.background, [0,0])
+                self.gameLoop()
+            elif (self.state == "GAMEOVER"):
+#                self.screen.blit(self.background, [0,0])
+>>>>>>> b9ca749ad5765b5ca786b5844e097cfbace4c223
                 self.gameOver()
 
     def gameIntro(self):
         font = pygame.font.Font('freesansbold.ttf', 20)
         title = pygame.image.load("assets/galaxy_defender.png").convert_alpha()
         titlepos = title.get_rect()
-        titlepos.centerx = self.background.get_rect().centerx
+        titlepos.centerx = self.screen.get_rect().centerx
         text = font.render('Press Y to play or N to quit', 1,(255,255,255))
         textpos = text.get_rect()
-        textpos.centerx = self.background.get_rect().centerx
-        textpos.centery = self.background.get_rect().centery
+        textpos.centerx = self.screen.get_rect().centerx
+        textpos.centery = self.screen.get_rect().centery
         self.background.blit(text, textpos)
         self.background.blit(title, titlepos)
         self.screen.blit(self.background, (0, 0))
@@ -80,24 +93,37 @@ class Controller:
         print("hello?")
     def gameLoop(self):
         pygame.key.set_repeat(1, 50)
-
         self.gameIntro()
+<<<<<<< HEAD
 
+=======
+>>>>>>> b9ca749ad5765b5ca786b5844e097cfbace4c223
         begin_x = 10
         begin_y = 10
         row = 5
         column = 6
         x_int = 0
         y_int = 0
+   
+        
         num_enemies = 30
         for x in range(column):
             for y in range(row):
                 enemy = Enemy.Enemy(begin_x+x*75,begin_y+y*50)
                 self.enemy_list.add(enemy)
                 self.all_sprites.add(enemy)
+        beg_y = 500
+        for beg_x in range(50,750,150):
+            for i in range(6):
+                for j in range(9):
+                    block = Block.Block(beg_x + j*10, beg_y + i*10, 10, 10)
+                    self.block_list.add(block)
+                    self.all_sprites.add(block)
+                   
+            
 
         ship = Ship.Ship(250, 575)
-        block = Block.Block(400, 400, 10, 10)
+      
 
         self.all_sprites.add(ship)
         self.all_sprites.add(block)
@@ -152,11 +178,17 @@ class Controller:
             self.all_sprites.update()
             for enemy in self.enemy_list:
                 enemy.movingCloser()
+<<<<<<< HEAD
             self.screen.blit(self.background, (0, 0))
+=======
+            if (self.life <= 0):
+                self.state = "GAMEOVER"
+                break
+>>>>>>> b9ca749ad5765b5ca786b5844e097cfbace4c223
 
             font = pygame.font.SysFont(None, 30, True)
             enemy_left = font.render("Enemies Remaining:" + str(len(self.enemy_list.sprites())), False, (250, 0, 0))
-
+            self.screen.blit(self.background, (0, 0))
             self.screen.blit(enemy_left, (10, 50))
             self.all_sprites.draw(self.screen)
             pygame.display.flip()
