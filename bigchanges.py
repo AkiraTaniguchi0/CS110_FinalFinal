@@ -145,12 +145,8 @@ class Controller:
                     bullet.kill()
                 if ship_hit:
                     bullet.kill()
-<<<<<<< HEAD
                     self.life -= 1
 
-=======
-                    life -= 1
->>>>>>> 081680d747e6710817dfdb8d41fb2be25358ec79
             # redraw the entire screen
             self.all_sprites.update()
             for enemy in self.enemy_list:
