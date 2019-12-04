@@ -71,23 +71,10 @@ class Controller:
         self.background1.blit(title, titlepos)
         self.screen.blit(self.background1, (0, 0))
         pygame.display.update()
-<<<<<<< HEAD
         event = pygame.event.poll()
         if event.type == pygame.KEYDOWN:
             pygame.quit()
             sys.exit()
-=======
-        while not self.state:
-            event = pygame.event.poll()
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_y:
-                    self.state = True
-                    self.restart = True
-                    print("blah")
-                elif event.key == pygame.K_n:
-                    pygame.quit()
-                    sys.exit()
->>>>>>> f89f407cb04d71df8565e443775d6598c5383259
 
     def gameLoop(self):
         pygame.display.update()
