@@ -225,7 +225,7 @@ class Controller:
                     bullet.kill()
                 self.nextlevel = True
                 self.level += 1
-                print(self.score)
+#                print(self.score)
                 break
     # score
         def updateFile(self):
