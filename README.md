@@ -12,6 +12,8 @@
 
 #
 
+![ciass_diagram](assets/class_diagram.jpg)
+
 * Your ATP
 
 | Step                  | Procedure     | Expected Results  | Actual Results |
