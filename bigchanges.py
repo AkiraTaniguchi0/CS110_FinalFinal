@@ -32,18 +32,8 @@ class Controller:
             if self.state:
                 self.screen.blit(self.background, [0,0])
                 self.gameLoop()
-
             elif not self.state:
                 self.screen.blit(self.background, [0,0])
-<<<<<<< HEAD
-=======
-            if (self.state == "GAME"):
-#                self.screen.blit(self.background, [0,0])
-                self.gameLoop()
-            elif (self.state == "GAMEOVER"):
-                self.background = pygame.image.load("assets/spacebackground.png").convert()
-                self.screen.blit(self.background, [0,0])
->>>>>>> f28de2135ea1b2633a8e24b2741308a55a56d0ec
                 self.gameOver()
 
     def gameIntro(self):
@@ -90,14 +80,10 @@ class Controller:
                 elif event.key == pygame.K_n:
                     pygame.quit()
                     sys.exit()
-<<<<<<< HEAD
-=======
-        print("hello?")
->>>>>>> f28de2135ea1b2633a8e24b2741308a55a56d0ec
 
     def gameLoop(self):
         pygame.key.set_repeat(1, 50)
-        
+
         if not self.restart:
             self.gameIntro()
 
