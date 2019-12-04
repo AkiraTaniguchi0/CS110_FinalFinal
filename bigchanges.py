@@ -93,6 +93,15 @@ class Controller:
                 enemy = Enemy.Enemy(begin_x+x*75,begin_y+y*50)
                 self.enemy_list.add(enemy)
                 self.all_sprites.add(enemy)
+        beg_y = 500
+        for beg_x in range(50,750,150):
+            for i in range(6):
+                for j in range(9):
+                    block = Block.Block(beg_x + j*10, beg_y + i*10, 10, 10)
+                    block_list.add(block)
+                    all_sprites.add(block)
+                   
+            
 
         ship = Ship.Ship(250, 575)
         block = Block.Block(400, 400, 10, 10)
