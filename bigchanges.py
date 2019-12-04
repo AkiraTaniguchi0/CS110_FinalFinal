@@ -1,6 +1,7 @@
 import sys
 import pygame
 import random
+
 from src import Enemy_bullet
 from src import Ship_bullet
 from src import Enemy
@@ -42,8 +43,8 @@ class Controller:
         title = pygame.image.load("assets/galaxy_defender.png").convert_alpha()
         titlepos = title.get_rect()
         titlepos.centerx = self.screen.get_rect().centerx
-        text1 = font.render('After shooting(Spacebar), you must move(l/r arrow) to shoot again', 1, (200,255,255))
-        text2 = font.render('When the aliens reach your barriers, the barriers wil all disappear.', 1, (200,255,255))
+        text1 = font.render('After Shooting(Spacebar), You Must Move(l/r Arrow) To Shoot Again', 1, (200,255,255))
+        text2 = font.render('When The Aliens Reach Your Barriers, The Barriers Wil All Disappear.', 1, (200,255,255))
         text3 = font.render("Bullets Kill You; You Have 1 Life.", 1, (200,255,255))
         text4 = font.render("Eliminate All Aliens To Progress To The Next Level; Levels Increase In Difficulty.", 1, (200,255,255))
         text5 = font.render("Each Alien Kill = 1 Point; Each Barrier Block Remaining = 1 Point.", 1, (200,255,255))
@@ -90,7 +91,7 @@ class Controller:
     def gameOver(self):
         self.all_sprites.empty()
         font = pygame.font.Font('freesansbold.ttf', 20)
-        text = font.render("Thanks for playing", 1, (255, 255, 255))
+        text = font.render("Thanks For Playing (>*_*>)", 1, (255, 255, 255))
         textpos = text.get_rect()
         textpos.centerx = self.screen.get_rect().centerx
         textpos.centery = self.screen.get_rect().centery
