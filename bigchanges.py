@@ -16,9 +16,7 @@ class Controller:
         self.background = pygame.image.load("assets/spacebackground.png").convert()
         self.background1 = pygame.image.load("assets/game_screen.png").convert()
         pygame.font.init()
-        self.state = True
         pygame.display.set_caption("Galaxy Defender")
-        self.state = "GAME"
         self.all_sprites = pygame.sprite.Group()
         self.block_list = pygame.sprite.Group()
         self.enemy_list = pygame.sprite.Group()
@@ -27,6 +25,7 @@ class Controller:
         self.life = 1
         self.score = 0
         self.restart = False
+        self.state = True
 
     def mainLoop(self):
         while True:
@@ -77,6 +76,7 @@ class Controller:
             sys.exit()
 
     def gameLoop(self):
+        pygame.display.update()
         pygame.key.set_repeat(1, 50)
 
         if not self.restart:
@@ -163,9 +163,7 @@ class Controller:
             for enemy in self.enemy_list:
                 enemy.movingCloser()
             self.screen.blit(self.background, (0, 0))
-            if (self.life <= 0):
-                self.state = False
-                break
+
 
             font = pygame.font.SysFont(None, 30, True)
             enemy_left = font.render("Enemies Remaining:" + str(len(self.enemy_list.sprites())), False, (250, 0, 0))
