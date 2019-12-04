@@ -95,11 +95,21 @@ class Controller:
         textpos.centerx = self.screen.get_rect().centerx
         textpos.centery = self.screen.get_rect().centery
         text1 = font.render("Press Any Key To Exit", 1, (255,200,255))
+        text2 = font.render(str("High Score: " + str(self.updateFile())), 1, (255,200,255))
+        text3 = font.render(str("Your Score: " + str(self.score)), 1, (255,200,255))
         text1pos = text1.get_rect()
+        text2pos = text2.get_rect()
+        text3pos = text3.get_rect()
         text1pos.centerx = self.screen.get_rect().centerx
-        text1pos.centery = self.screen.get_rect().centery + 60
+        text1pos.centery = self.screen.get_rect().centery + 120
+        text2pos.centerx = self.screen.get_rect().centerx
+        text2pos.centery = self.screen.get_rect().centery + 80
+        text3pos.centerx = self.screen.get_rect().centerx
+        text3pos.centery = self.screen.get_rect().centery + 50
         self.background1.blit(text, textpos)
         self.background1.blit(text1, text1pos)
+        self.background1.blit(text2, text2pos)
+        self.background1.blit(text3, text3pos)
         self.screen.blit(self.background1, (0, 0))
         pygame.display.update()
         event = pygame.event.poll()
@@ -228,14 +238,14 @@ class Controller:
 #                print(self.score)
                 break
     # score
-        def updateFile(self):
-            f = open('scores.txt', 'r')
-            file = f.readlines()
-            last = int(file[0])
-            if last < int(self.score):
-                f.close()
-                file = open('scores.txt', 'w')
-                file.write(str(self.score))
-                file.close()
-                return self.score
-            return last
+    def updateFile(self):
+        f = open('src/scores.txt', 'r')
+        file = f.readlines()
+        last = int(file[0])
+        if last < int(self.score):
+            f.close()
+            file = open('src/scores.txt', 'w')
+            file.write(str(self.score))
+            file.close()
+            return self.score
+        return last
