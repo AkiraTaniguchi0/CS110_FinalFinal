@@ -99,6 +99,11 @@ class Controller:
         text1pos = text1.get_rect()
         text1pos.centerx = self.screen.get_rect().centerx
         text1pos.centery = self.screen.get_rect().centery + 60
+        text2 = font.render("Your Score Is:" +str('self.score', 1,(200,255,200))
+        text2pos= text2.get_rect()
+        text2pos.centerx = self.screen.get_rect().centerx
+        text2pos.centery = self.screen.get_rect().centery + 90
+        self.background1.blit(text2, text2pos)
         self.background1.blit(text, textpos)
         self.background1.blit(text1, text1pos)
         self.screen.blit(self.background1, (0, 0))
