@@ -82,6 +82,7 @@ class Controller:
                     sys.exit()
 
     def gameLoop(self):
+        self.screen.blit(self.background, (0, 0))
         pygame.key.set_repeat(1, 50)
 
         if not self.restart:
