@@ -68,7 +68,6 @@ class Controller:
         textpos = text.get_rect()
         textpos.centerx = self.background.get_rect().centerx
         self.background1.blit(text, textpos)
-        self.background1.blit(title, titlepos)
         self.screen.blit(self.background1, (0, 0))
         pygame.display.update()
         event = pygame.event.poll()
