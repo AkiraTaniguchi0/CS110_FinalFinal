@@ -10,8 +10,12 @@
 
 # background image ("spacebackground.png") from site: https://hipwallpaper.com/8-bit-space-backgrounds/
 
-#
-
+## User Interface Design
+* << A wireframe or drawing of the user interface concept along with a short description of the interface. You should have one for each screen in your program. >>
+    * For example, if your program has a start screen, game screen, and game over screen, you should include a wireframe / screenshot / drawing of each one and a short description of the components
+![gui_design](assets/IMG_2816.jpg)
+![gui_design2](assets/IMG_2817.jpg)
+![gui_design3](assets/IMG_2818.jpg)
 ![ciass_diagram](assets/ClassDiagram.png)
 
 * Your ATP
