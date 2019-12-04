@@ -10,7 +10,7 @@ class enemyBullet(pygame.sprite.Sprite):
         self.rect.x = x
         self.rect.y = y
 
-def update(self):
-        self.rect.y -= self.speed
+    def update(self):
+        self.rect.y += self.speed
         if self.rect.y > 700 or self.rect.y < 0:
             self.kill()
