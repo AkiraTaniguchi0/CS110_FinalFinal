@@ -87,8 +87,8 @@ class Controller:
         column = 6
         x_int = 0
         y_int = 0
-   
-        
+
+
         num_enemies = 30
         for x in range(column):
             for y in range(row):
@@ -102,8 +102,8 @@ class Controller:
                     block = Block.Block(beg_x + j*10, beg_y + i*10, 10, 10)
                     self.block_list.add(block)
                     self.all_sprites.add(block)
-                   
-            
+
+
 
         ship = Ship.Ship(250, 575)
         block = Block.Block(400, 400, 10, 10)
