@@ -11,7 +11,6 @@ class Ship(pygame.sprite.Sprite):
         self.rect.x = x
         self.rect.y = y
         self.speed = 5
-        self.health = 1
 
     def move_left(self):
         self.rect.x -= self.speed
