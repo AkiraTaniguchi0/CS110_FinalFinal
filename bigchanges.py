@@ -25,6 +25,7 @@ class Controller:
         self.ship_bullet_list = pygame.sprite.Group()
         self.life = 1
         self.score = 0
+        self.restart = False
 
     def mainLoop(self):
         while True:
@@ -34,11 +35,6 @@ class Controller:
 
             elif not self.state:
                 self.screen.blit(self.background, [0,0])
-            if (self.state == "GAME"):
-#                self.screen.blit(self.background, [0,0])
-                self.gameLoop()
-            elif (self.state == "GAMEOVER"):
-#                self.screen.blit(self.background, [0,0])
                 self.gameOver()
 
     def gameIntro(self):
@@ -75,19 +71,22 @@ class Controller:
         self.background.blit(text, (400,200))
         self.screen.blit(self.background, (0, 0))
         pygame.display.update()
-        while True:
+        while not self.state:
             event = pygame.event.poll()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_y:
                     self.state = True
-                    break
+                    self.restart = True
+                    print("blah")
                 elif event.key == pygame.K_n:
                     pygame.quit()
                     sys.exit()
-        print("hello?")
+
     def gameLoop(self):
         pygame.key.set_repeat(1, 50)
-        self.gameIntro()
+        
+        if not self.restart:
+            self.gameIntro()
 
         begin_x = 10
         begin_y = 10
@@ -171,7 +170,7 @@ class Controller:
                 enemy.movingCloser()
             self.screen.blit(self.background, (0, 0))
             if (self.life <= 0):
-                self.state = "GAMEOVER"
+                self.state = False
                 break
 
             font = pygame.font.SysFont(None, 30, True)
