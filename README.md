@@ -31,13 +31,13 @@ Install the repository and run main.py to play our version of Space Invaders.
 |  11  | Lose game  | GAME OVER screen shows, score is displayed  |           |
 |  12  | Close game  | Program ends and closes  |           |
 
-#Sources
-# enemy image ("invader/png") from site: https://www.theregister.co.uk/2013/06/05/feature_space_invaders_at_35/
+# Sources:
+enemy image ("invader/png") from site: https://www.theregister.co.uk/2013/06/05/feature_space_invaders_at_35/
 
-# ship image ("ship.png") from site: http://pixelartmaker.com/art/ac5245d40297a1b
+ship image ("ship.png") from site: http://pixelartmaker.com/art/ac5245d40297a1b
 
-# bullet class ideas from YouTube video: https://www.youtube.com/watch?v=PpdJjaiLX6A
+bullet class ideas from YouTube video: https://www.youtube.com/watch?v=PpdJjaiLX6A
 
-# Game intro menu ideas from site: https://redhulimachinelearning.com/game-development/create-a-game-in-pygame-game-menu-and-sound-music/
+Game intro menu ideas from site: https://redhulimachinelearning.com/game-development/create-a-game-in-pygame-game-menu-and-sound-music/
 
-# background image ("spacebackground.png") from site: https://hipwallpaper.com/8-bit-space-backgrounds/
+background image ("spacebackground.png") from site: https://hipwallpaper.com/8-bit-space-backgrounds/
