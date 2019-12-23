@@ -1,5 +1,5 @@
 # CS110_Final
-created by Akira Taniguchi, Sam Weimer, Gilad Adrar
+created by Akira Taniguchi, Sam Weimer, Gilad Adar
 
 Install the repository and run main.py to play our version of Space Invaders.
 
