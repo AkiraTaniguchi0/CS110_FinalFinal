@@ -6,7 +6,7 @@ Install the repository and run main.py to play our version of Space Invaders.
 # LINK TO SLIDES:
 https://docs.google.com/presentation/d/1NOqh_1SicPIPfOICfkpW-ONSUlwDmQRWSwyoCbHV32M/edit#slide=id.g33aee8826e_9_5
 
-* Your ATP
+* Our ATP
 
 | Step                  | Procedure     | Expected Results  | Actual Results |
 | ----------------------|:-------------:| -----------------:| -------------- |
